@@ -1,14 +1,7 @@
 import { Component } from 'react';
+import { signUp } from '../../utilities/users-service';
 
 export default class SignUpForm extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     name: ''
-  //   };
-  //   this.handleChange = this.handleChange.bind(this)
-  // }
-
   state = {
     name: '',
     email: '',
@@ -24,9 +17,18 @@ export default class SignUpForm extends Component {
     });
   };
 
-  handleSubmit = (evt) => {
+  handleSubmit = async (evt) => {
     evt.preventDefault();
-    alert(JSON.stringify(this.state));
+    try {
+      const formData = {...this.state};
+      delete formData.confirm;
+      delete formData.error;
+      const user = await signUp(formData);
+      console.log(user);
+    } catch {
+      // An error occurred, like a dup email address
+      this.setState({ error: 'Sign Up Failed - Try Again' });
+    }
   };
 
   
