@@ -17,6 +17,15 @@ export async function signUp(userData) {
   return getUser();
 }
 
+export async function login(credentials) {
+  // Delegate the request to the users-api
+  // which will ultimatelly return a JSON Web Token (JWT)
+  const token = await usersAPI.login(credentials);
+  // Persist the token 
+  localStorage.setItem('token', token);
+  return getUser();
+}
+
 export function logOut() {
   localStorage.removeItem('token');
 }
