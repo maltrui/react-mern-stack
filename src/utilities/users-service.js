@@ -14,8 +14,7 @@ export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
   // Persist the token 
   localStorage.setItem('token', token);
-  // baby step (TODO: return a user object)
-  return token;
+  return getUser();
 }
 
 // Return the token if valid, otherwise return null
