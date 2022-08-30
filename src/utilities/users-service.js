@@ -17,6 +17,10 @@ export async function signUp(userData) {
   return getUser();
 }
 
+export function logOut() {
+  localStorage.removeItem('token');
+}
+
 // Return the token if valid, otherwise return null
 export function getToken() {
   const token = localStorage.getItem('token');
