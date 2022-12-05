@@ -4,7 +4,7 @@ import ProductNavBar from '../../components/ProductNavBar/ProductNavBar';
 import axios, {isCancel, AxiosError} from 'axios';
 import { useEffect } from 'react';
 
-export default function CategoryPage({productCat}) {
+export default function CategoryPage({productCat, product}) {
 
   return(
     <>
@@ -12,10 +12,9 @@ export default function CategoryPage({productCat}) {
         <nav>
         {productCat.map(cat => {return(<ProductNavBar key={cat.name} cat={cat}/>)})}
         </nav>
-  
+        <ul>
+          {product.map(prod => <ProductCard key={prod.product_id} product={prod}/>)}
+        </ul>
     </> 
   )
 }
-//<ul>
-//{product.map(prod => <ProductCard key={prod.product_id} product={prod}/>)}
-//</ul>
