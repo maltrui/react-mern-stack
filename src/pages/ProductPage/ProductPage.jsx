@@ -7,8 +7,8 @@ import { useEffect } from 'react';
 export default function ProductPage({productCat}){
 
     return(
-        <li>
-            <p>got here</p>
-        </li>
+        <ul>
+            <li>got here</li>
+        </ul>
     )
 }

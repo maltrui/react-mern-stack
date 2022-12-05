@@ -39,6 +39,7 @@ export default function App() {
             <Route path='/cart' element={<CartPage />} />
             <Route path='/orders' element={<OrderHistoryPage />} />
             <Route path='/product/:catname' element={<ProductPage/>}/>
+            <Route path='/product/:prodId' />
           </Routes>
         </>
         :

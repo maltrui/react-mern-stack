@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom"
+import DetailCard from "../DetailCard/DetailCard"
 
 export default function ProductCard({product}){
     let img = ''
@@ -20,7 +21,7 @@ export default function ProductCard({product}){
                    <img src={img} />
                 </li>
                 <li>
-                    
+                    <Link to={`/product/${product.id}`}> Details</Link>
                 </li>
             </ul>
         </>
