@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom"
-import DetailCard from "../DetailCard/DetailCard"
 
 export default function ProductCard({product}){
     let selectedImg = ''

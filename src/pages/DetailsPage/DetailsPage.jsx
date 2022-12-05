@@ -26,7 +26,6 @@ export default function ProductPage(){
     .then(json=>{
         setSelectedProd(json)})
     }, [])
-    console.log(selectedProd.id)
     return(
         <ul>
             <li>{selectedProd.title}</li>
