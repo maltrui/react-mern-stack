@@ -7,15 +7,17 @@ import ProductPage from '../ProductPage/ProductPage'
 import CartPage from '../CartPage/CartPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
+import DetailsPage from '../DetailsPage/DetailsPage'
 import './App.css';
 import { useEffect } from 'react';
-import axios, {isCancel, AxiosError} from 'axios';
+
 
 export default function App() {
   const [user, setUser] = useState(getUser())
   const [product, setProduct] = useState([])
   const [productCat, setProductCat] = useState([])
-  const [selectedCat, setSelectedCat] = useState('')
+  const [selectedCat, setSelectedCat] = useState()
+  const [selectedProd, setSelectedProd] = useState([])
 
   useEffect(()=>{
     fetch('https://api.escuelajs.co/api/v1/categories')
@@ -27,7 +29,7 @@ export default function App() {
     .then(res=>res.json())
     .then(json=>setProduct(json))
   }, [])
-  console.log('App Page')
+
   return (
     <main className="App">
       { user ?
@@ -38,8 +40,8 @@ export default function App() {
             <Route path='/products' element={<CategoryPage productCat={productCat} product={product}/>}/>
             <Route path='/cart' element={<CartPage />} />
             <Route path='/orders' element={<OrderHistoryPage />} />
-            <Route path='/product/:catname' element={<ProductPage/>}/>
-            <Route path='/product/:prodId' />
+            <Route path='/product/:catname' />
+            <Route path='/product/details/:prodId' element={<DetailsPage/>}/>
           </Routes>
         </>
         :
