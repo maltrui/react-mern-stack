@@ -21,6 +21,9 @@ export default function ProductCard({product}){
                    <img src={selectedImg} />
                 </li>
                 <li>
+                    <button>Add</button>
+                </li>
+                <li>
                     <Link to={`/product/details/${product.id}`}> Details</Link>
                 </li>
             </ul>
