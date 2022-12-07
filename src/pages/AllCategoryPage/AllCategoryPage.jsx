@@ -3,7 +3,7 @@ import ProductNavBar from '../../components/ProductNavBar/ProductNavBar'
 
 
 export default function AllCategoryPage({productCat, product}) {
-
+  console.log(productCat)
   return(
     <>
         <h1>All Products</h1>
