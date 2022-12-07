@@ -19,16 +19,22 @@ export default function App() {
   const [product, setProduct] = useState([])
   const [productCat, setProductCat] = useState([])
   const [cart, setCart] = useState(null)
-
-  useEffect(()=>{
-    fetch('https://api.escuelajs.co/api/v1/categories')
-    .then(res=>res.json())
-    .then(json=>setProductCat(json))
-  }, [])
+  
   useEffect(()=>{
     fetch('https://api.escuelajs.co/api/v1/products')
     .then(res=>res.json())
-    .then(json=>setProduct(json))
+    .then(json=>{
+      let baseCat = []
+      json.map(prod => baseCat.push(prod.category))
+      let reducedCat = [...new Set(baseCat.map(JSON.stringify))].map(JSON.parse)
+      let prunedCat = []
+      reducedCat.map(cat => {if(cat.keyLoremSpace == null){
+        prunedCat.push(cat)
+      }})
+      console.log(prunedCat)
+      setProduct(json)
+      setProductCat(prunedCat)
+    })
   }, [])
   useEffect(function(){
     async function getCart(){

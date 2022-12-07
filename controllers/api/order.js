@@ -5,7 +5,6 @@ module.exports = {
     addToCart
 }
 async function cart(req, res){
-    console.log('i am here')
     const cart = await Order.getCart(req.user._id)
     res.json(cart)
 } 
