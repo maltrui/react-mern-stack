@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom"
 
-export default function ProductCard({product}){
+export default function ProductCard({product, handleAddToOrder}){
     let selectedImg = ''
     if(product.images[0] !== ''){
         selectedImg = product.images[0]
@@ -21,7 +21,7 @@ export default function ProductCard({product}){
                    <img src={selectedImg} />
                 </li>
                 <li>
-                    <button>Add</button>
+                    <button onClick={() => handleAddToOrder(product.id)}>Add</button>
                 </li>
                 <li>
                     <Link to={`/product/details/${product.id}`}> Details</Link>

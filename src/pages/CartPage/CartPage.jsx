@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function CartPage() {
+export default function CartPage({cart}) {
 
 
   return (

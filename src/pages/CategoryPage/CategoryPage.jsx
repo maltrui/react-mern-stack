@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import ProductNavBar from '../../components/ProductNavBar/ProductNavBar';
 import ProductCard from '../../components/ProductCard/ProductCard'
 
-export default function CategoryPage({productCat, product}){
+export default function CategoryPage({productCat, handleAddToOrder}){
     
     const [selectedCat, setSelectedCat] = useState([
         {id: '',
@@ -29,7 +29,6 @@ export default function CategoryPage({productCat, product}){
     .then(json=>{
         setSelectedCat(json)})
     },[catId])
-    console.log(selectedCat)
     return(
         <>
         <h1>{selectedCat[0].category.name} Page</h1>
@@ -37,7 +36,7 @@ export default function CategoryPage({productCat, product}){
             {productCat.map(cat => {return(<ProductNavBar key={cat.name} cat={cat}/>)})}
         </nav>
         <ul>
-            {selectedCat.map(prod => <ProductCard key={prod.id} product={prod}/>)}
+            {selectedCat.map(prod => <ProductCard key={prod.id} product={prod} handleAddToOrder={handleAddToOrder}/>)}
         </ul>
         </>
     )

@@ -1,7 +1,6 @@
 import ProductCard from '../../components/ProductCard/ProductCard'
-import { useState } from 'react';
-import ProductNavBar from '../../components/ProductNavBar/ProductNavBar';
-import { useEffect } from 'react';
+import ProductNavBar from '../../components/ProductNavBar/ProductNavBar'
+
 
 export default function AllCategoryPage({productCat, product}) {
 
