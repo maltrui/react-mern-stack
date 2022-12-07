@@ -19,7 +19,7 @@ export default function App() {
   const [product, setProduct] = useState([])
   const [productCat, setProductCat] = useState([])
   const [cart, setCart] = useState(null)
-  
+
   useEffect(()=>{
     fetch('https://api.escuelajs.co/api/v1/products')
     .then(res=>res.json())
@@ -31,7 +31,6 @@ export default function App() {
       reducedCat.map(cat => {if(cat.keyLoremSpace == null){
         prunedCat.push(cat)
       }})
-      console.log(prunedCat)
       setProduct(json)
       setProductCat(prunedCat)
     })
@@ -39,7 +38,6 @@ export default function App() {
   useEffect(function(){
     async function getCart(){
       const cart = await ordersAPI.getCart()
-      console.log("getCart Fun")
       setCart(cart)
     }
     getCart() 
@@ -48,7 +46,6 @@ export default function App() {
     const cart = await ordersAPI.addItemToCart(prodId)
     setCart(cart)
   }
-
   return (
     <main className="App">
       { user ?
@@ -56,7 +53,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
-            <Route path='/products' element={<AllCategoryPage productCat={productCat} product={product}/>}/>
+            <Route path='/products' element={<AllCategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
             <Route path='/cart' element={<CartPage cart={cart}/>} />
             <Route path='/orders' element={<OrderHistoryPage />} />
             <Route path='/product/:catname' element={<CategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>

@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import CartDetail from "../../components/CartDetail/CartDetail"
 
 export default function CartPage({cart}) {
 
-
   return (
-    <h1>NewOrderPage</h1>
+    <>
+      {cart == null ? <></> : cart.lineItems.map(cartItem => <CartDetail cartItem={cartItem}/>)}
+    </>
   );
 }

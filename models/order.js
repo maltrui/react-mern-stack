@@ -13,7 +13,10 @@ const lineItemSchema = new Schema({
 
 lineItemSchema.virtual('extPrice').get(function () {
     // 'this' is bound to the lineItem subdocument
-    return this.qty * this.itemId.price;
+    fetch(`https://api.escuelajs.co/api/v1/products/${this.itemId}`)
+    .then(res=>res.json())
+    .then(json=> this.qty * json.price)
+    
 })
 
 const orderSchema = new Schema({
@@ -39,12 +42,27 @@ const orderSchema = new Schema({
     return this.id.slice(-6).toUpperCase();
   })
 
-  orderSchema.statics.getCart = function(userId){
+orderSchema.statics.getCart = function(userId){
     return this.findOneAndUpdate(
         { user: userId, isPaid: false},
         { user: userId},
         {upsert: true, new: true}
     )
+}
+
+orderSchema.methods.addItemToCart = async function(prodId){
+    const cart = this
+    const lineItem = cart.lineItems.find(lineItem => lineItem.itemId.equals(prodId))
+    if (lineItem){
+        lineItem.qty += 1
+    } else {
+        let orderedProduct = {
+            qty: 1,
+            itemId: prodId
+        }
+        cart.lineItems.push(orderedProduct)
+    }
+    return cart.save()
 }
 
 

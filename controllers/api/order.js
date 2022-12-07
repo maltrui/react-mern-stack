@@ -10,9 +10,8 @@ async function cart(req, res){
 } 
 
 async function addToCart(req,res){
-    console.log('getting here')
     console.log(req.params.id)
-    const cart = await Order.getCard(req.user._id)
+    const cart = await Order.getCart(req.user._id)
     await cart.addItemToCart(req.params.id)
     res.json(cart)
 } 

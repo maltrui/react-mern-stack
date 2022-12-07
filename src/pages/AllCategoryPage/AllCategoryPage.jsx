@@ -2,8 +2,7 @@ import ProductCard from '../../components/ProductCard/ProductCard'
 import ProductNavBar from '../../components/ProductNavBar/ProductNavBar'
 
 
-export default function AllCategoryPage({productCat, product}) {
-  console.log(productCat)
+export default function AllCategoryPage({productCat, product, handleAddToOrder}) {
   return(
     <>
         <h1>All Products</h1>
@@ -11,7 +10,7 @@ export default function AllCategoryPage({productCat, product}) {
         {productCat.map(cat => {return(<ProductNavBar key={cat.name} cat={cat}/>)})}
         </nav>
         <ul>
-          {product.map(prod => <ProductCard key={prod.id} product={prod}/>)}
+          {product.map(prod => <ProductCard key={prod.id} product={prod} handleAddToOrder={handleAddToOrder}/>)}
         </ul>
     </> 
   )
