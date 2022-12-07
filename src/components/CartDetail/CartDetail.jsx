@@ -1,9 +1,32 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
+
 export default function DetailCard({cartItem}){
-let product = ''
-fetch(`https://api.escuelajs.co/api/v1/products/${cartItem.Id}`)
+const [orderProd, setOrderProd] = useState([
+        {id: '',
+        title:'',
+        price: '',
+        description: '',
+        category: {
+            id: '',
+            name: 'placeholder',
+            image: ''
+        },
+        images: [
+            ''
+        ]
+        
+        }
+])
+useEffect(()=>{
+fetch(`https://api.escuelajs.co/api/v1/products/${cartItem.itemId}`)
     .then(res=>res.json())
-    .then(json=> product = json)
+    .then(json=> {
+        setOrderProd(json)})
+}, [])
+
     return(
-        <p>{product.name}</p>
+        <p>{orderProd.title} ${orderProd.price} QTY:{cartItem.qty} Cost: {cartItem.extPrice}</p>
+    
     )
 }

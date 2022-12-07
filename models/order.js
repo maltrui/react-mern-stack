@@ -13,9 +13,9 @@ const lineItemSchema = new Schema({
 
 lineItemSchema.virtual('extPrice').get(function () {
     // 'this' is bound to the lineItem subdocument
-    fetch(`https://api.escuelajs.co/api/v1/products/${this.itemId}`)
+    return(fetch(`https://api.escuelajs.co/api/v1/products/${this.itemId}`)
     .then(res=>res.json())
-    .then(json=> this.qty * json.price)
+    .then(json=> this.qty * json.price))
     
 })
 
@@ -27,7 +27,8 @@ const orderSchema = new Schema({
     // A user's unpaid order is their "cart"
     isPaid: { type: Boolean, default: false },
   }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: {virtuals: true}
   });
   
   orderSchema.virtual('orderTotal').get(function () {
@@ -52,7 +53,7 @@ orderSchema.statics.getCart = function(userId){
 
 orderSchema.methods.addItemToCart = async function(prodId){
     const cart = this
-    const lineItem = cart.lineItems.find(lineItem => lineItem.itemId.equals(prodId))
+    const lineItem = cart.lineItems.find(lineItem => lineItem.itemId == prodId)
     if (lineItem){
         lineItem.qty += 1
     } else {
