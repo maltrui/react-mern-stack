@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import AllCategoryPage from '../AllCategoryPage/AllCategoryPage'
@@ -19,7 +19,7 @@ export default function App() {
   const [product, setProduct] = useState([])
   const [productCat, setProductCat] = useState([])
   const [cart, setCart] = useState(null)
-
+  const navigate = useNavigate()
   useEffect(()=>{
     fetch('https://api.escuelajs.co/api/v1/products')
     .then(res=>res.json())
@@ -50,6 +50,10 @@ export default function App() {
     const updateCart = await ordersAPI.setItemQtyInCart(itemId, newQty)
     setCart(updateCart)
   }
+  async function handleCheckout(){
+    await ordersAPI.checkout()
+    navigate('/orders')
+  }
   return (
     <main className="App">
       { user ?
@@ -58,7 +62,7 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path='/products' element={<AllCategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
-            <Route path='/cart' element={<CartPage cart={cart} product={product} handleChangeQty={handleChangeQty}/>} />
+            <Route path='/cart' element={<CartPage cart={cart} product={product} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout}/>} />
             <Route path='/orders' element={<OrderHistoryPage />} />
             <Route path='/product/:catname' element={<CategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
             <Route path='/product/details/:prodId' element={<DetailsPage/>}/>

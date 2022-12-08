@@ -11,8 +11,9 @@ export function addItemToCart(prodId){
 }
 
 export function setItemQtyInCart(itemId, newQty){
-    console.log('getting here')
-    console.log(itemId)
-    console.log(newQty)
     return sendRequest(`${BASE_URL}/cart/qty`, 'PUT', {itemId, newQty})
+}
+
+export function checkout(){
+    return sendRequest(`${BASE_URL}/cart/checkout`, 'POST')
 }

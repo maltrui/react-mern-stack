@@ -1,8 +1,8 @@
 import CartDetail from "../../components/CartDetail/CartDetail"
-import { useState } from 'react';
-import { useEffect } from 'react';
+//import { useState } from 'react';
+//import { useEffect } from 'react';
 
-export default function CartPage({cart, product, handleChangeQty}) {
+export default function CartPage({cart, product, handleChangeQty, handleCheckout}) {
   if (!cart) return null
   let totalCost = 0
   cart.lineItems.map(cartProd => {let productPrice = product.find(({id}) => id === cartProd.itemId).price
@@ -13,7 +13,8 @@ export default function CartPage({cart, product, handleChangeQty}) {
         return(
         <CartDetail key={cartItem.itemId} cartItem={cartItem} handleChangeQty={handleChangeQty}/>)
       })}
-      {<p>Total Cost: ${totalCost}</p>}
+      <p>Total Cost: ${totalCost}</p>
+      <button onClick={handleCheckout}>Checkout!</button>
     </>
   );
 }
