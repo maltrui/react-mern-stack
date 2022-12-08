@@ -46,6 +46,15 @@ orderSchema.methods.addItemToCart = async function(prodId, prodPrice){
     }
     return cart.save()
 }
-
+orderSchema.methods.setItemQty = function(prodId, newQty){
+    const cart = this
+    const lineItem = cart.lineItems.find(lineItem => lineItem.itemId == prodId)
+    if(lineItem && newQty <= 0){
+        lineItem.remove()
+    } else if (lineItem){
+        lineItem.qty = newQty
+    }
+    return cart.save()
+}
 
 module.exports = mongoose.model('Order', orderSchema)

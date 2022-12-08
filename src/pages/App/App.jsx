@@ -46,6 +46,10 @@ export default function App() {
     const cart = await ordersAPI.addItemToCart(prodId)
     setCart(cart)
   }
+  async function handleChangeQty(itemId, newQty){
+    const updateCart = await ordersAPI.setItemQtyInCart(itemId, newQty)
+    setCart(updateCart)
+  }
   return (
     <main className="App">
       { user ?
@@ -54,7 +58,7 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path='/products' element={<AllCategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
-            <Route path='/cart' element={<CartPage cart={cart} product={product}/>} />
+            <Route path='/cart' element={<CartPage cart={cart} product={product} handleChangeQty={handleChangeQty}/>} />
             <Route path='/orders' element={<OrderHistoryPage />} />
             <Route path='/product/:catname' element={<CategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
             <Route path='/product/details/:prodId' element={<DetailsPage/>}/>
