@@ -54,7 +54,7 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path='/products' element={<AllCategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
-            <Route path='/cart' element={<CartPage cart={cart}/>} />
+            <Route path='/cart' element={<CartPage cart={cart} product={product}/>} />
             <Route path='/orders' element={<OrderHistoryPage />} />
             <Route path='/product/:catname' element={<CategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
             <Route path='/product/details/:prodId' element={<DetailsPage/>}/>
