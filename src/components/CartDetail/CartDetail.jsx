@@ -24,9 +24,8 @@ fetch(`https://api.escuelajs.co/api/v1/products/${cartItem.itemId}`)
     .then(json=> {
         setOrderProd(json)})
 }, [])
-
     return(
-        <p>{orderProd.title} ${orderProd.price} QTY:{cartItem.qty} Cost: {cartItem.extPrice}</p>
+        <p>{orderProd.title} ${orderProd.price} QTY:{cartItem.qty}</p>
     
     )
 }
