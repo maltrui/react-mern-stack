@@ -54,6 +54,7 @@ export default function App() {
     await ordersAPI.checkout()
     navigate('/orders')
   }
+  
   return (
     <main className="App">
       { user ?
@@ -63,7 +64,7 @@ export default function App() {
             {/* Route components in here */}
             <Route path='/products' element={<AllCategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
             <Route path='/cart' element={<CartPage cart={cart} product={product} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout}/>} />
-            <Route path='/orders' element={<OrderHistoryPage />} />
+            <Route path='/orders' element={<OrderHistoryPage product={product}/>} />
             <Route path='/product/:catname' element={<CategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
             <Route path='/product/details/:prodId' element={<DetailsPage/>}/>
           </Routes>
