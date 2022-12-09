@@ -66,7 +66,7 @@ export default function App() {
             <Route path='/cart' element={<CartPage cart={cart} product={product} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout}/>} />
             <Route path='/orders' element={<OrderHistoryPage product={product}/>} />
             <Route path='/product/:catname' element={<CategoryPage productCat={productCat} product={product} handleAddToOrder={handleAddToOrder}/>}/>
-            <Route path='/product/details/:prodId' element={<DetailsPage/>}/>
+            <Route path='/product/details/:prodId' element={<DetailsPage handleAddToOrder={handleAddToOrder}/>}/>
           </Routes>
         </>
         :

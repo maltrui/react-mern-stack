@@ -1,12 +1,12 @@
 import ProductCard from '../../components/ProductCard/ProductCard'
 import ProductNavBar from '../../components/ProductNavBar/ProductNavBar'
-
+import "./AllCategoryPage.css"
 
 export default function AllCategoryPage({productCat, product, handleAddToOrder}) {
   return(
     <>
         <h1>All Products</h1>
-        <nav>
+        <nav class='prodNavBar'>
         {productCat.map(cat => {return(<ProductNavBar key={cat.name} cat={cat}/>)})}
         </nav>
         <ul>

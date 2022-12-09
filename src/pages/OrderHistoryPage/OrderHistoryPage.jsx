@@ -11,7 +11,6 @@ export default function OrderHistoryPage({product}) {
     }
     fetchOrderHistory()
   }, [])
-  console.log(orders)
   return (
     <>
       <h1>Order History</h1>

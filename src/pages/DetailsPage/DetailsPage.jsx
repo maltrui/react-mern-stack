@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useParams } from "react-router-dom"
 import { useEffect } from 'react';
-
-export default function ProductPage(){
+import './DetailsPage.jsx'
+export default function ProductPage({handleAddToOrder}){
     const [selectedProd, setSelectedProd] = useState(
         {id: '',
         title:'',
@@ -32,6 +32,7 @@ export default function ProductPage(){
             <li> $ {selectedProd.price}</li>
             <li> Description: {selectedProd.description}</li>
             <li> Category: {selectedProd.category.name}</li>
+            <li><button onClick={() => handleAddToOrder(selectedProd.id)}>Add</button></li>
             {selectedProd.images[0] !== '' ? <li>{selectedProd.images.map(prodImg => <img key={prodImg} src={prodImg}/>)} </li> : <li>{selectedProd.category.image}</li>}
         </ul>
     )
