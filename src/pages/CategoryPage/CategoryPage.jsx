@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import ProductNavBar from '../../components/ProductNavBar/ProductNavBar';
 import ProductCard from '../../components/ProductCard/ProductCard'
+import "./CategoryPage.css"
 
 export default function CategoryPage({productCat, handleAddToOrder}){
     
@@ -32,7 +33,7 @@ export default function CategoryPage({productCat, handleAddToOrder}){
     return(
         <>
         <h1>{selectedCat[0].category.name} Page</h1>
-        <nav>
+        <nav class='prodNavBar'>
             {productCat.map(cat => {return(<ProductNavBar key={cat.name} cat={cat}/>)})}
         </nav>
         <ul>
